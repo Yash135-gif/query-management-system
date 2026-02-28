@@ -1,0 +1,134 @@
+/* ===============================
+   WRAPPER
+================================ */
+
+.department-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .department-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===============================
+   CARD
+================================ */
+
+.department-card {
+    background: var(--card-bg);
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+}
+
+/* Card Header */
+.card-header {
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+}
+
+/* ===============================
+   FORM
+================================ */
+
+.department-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: #0f172a;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* ===============================
+   BUTTON
+================================ */
+
+.full-btn {
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--accent);
+    border: none;
+    padding: 11px 16px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+/* ===============================
+   DEPARTMENT LIST
+================================ */
+
+.department-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.department-item {
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    transition: 0.3s ease;
+}
+
+.department-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.dept-name {
+    font-size: 14px;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+    padding: 15px;
+    text-align: center;
+    color: var(--text-secondary);
+    background: #0f172a;
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+}

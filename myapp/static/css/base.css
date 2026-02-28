@@ -1,0 +1,137 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* ============================= */
+/* ROOT VARIABLES */
+/* ============================= */
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+}
+
+/* ============================= */
+/* GLOBAL RESET */
+/* ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+.navbar {
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.logo-accent {
+    color: var(--accent);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+.btn-primary {
+    background: var(--accent);
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: white !important;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-outline {
+    border: 1px solid var(--accent);
+    padding: 7px 15px;
+    border-radius: 6px;
+    color: var(--accent) !important;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--accent);
+    color: white !important;
+}
+
+/* ============================= */
+/* MAIN */
+/* ============================= */
+.main-container {
+    flex: 1;
+    padding: 50px 0;
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+.footer {
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 20px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+}

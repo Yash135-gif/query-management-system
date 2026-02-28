@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Query Conversation{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/user_query_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="chat-wrapper">
+<div class="page-top-bar">
+        <a href="{% url 'my_queries' %}" class="back-btn">← Back</a>
+    </div>
+    <div class="chat-header">
+        <h2>{{ query.title }}</h2>
+        <span class="status-badge {{ query.status }}">
+            {{ query.status|title }}
+        </span>
+    </div>
+
+    <div class="chat-box">
+        {% for msg in query.messages.all %}
+
+        <div class="chat-message 
+            {% if msg.sender.role == 'user' %}
+                user
+            {% elif msg.sender.role == 'employee' %}
+                employee
+            {% else %}
+                admin
+            {% endif %}
+        ">
+
+            <div class="message-header">
+                <strong>
+                    {% if msg.sender.role == "admin" %}
+                        Admin
+                    {% elif msg.sender.role == "employee" %}
+                        Employee
+                    {% else %}
+                        You
+                    {% endif %}
+                </strong>
+                &nbsp &nbsp
+                <small>{{ msg.created_at|date:"d M Y H:i" }}</small>
+            </div>
+
+            <p class="message-text">{{ msg.message }}</p>
+
+            {% if msg.attachment %}
+                <a href="{{ msg.attachment.url }}" target="_blank" class="attachment-link">
+                    📎 View Attachment
+                </a>
+            {% endif %}
+
+            {% with last_msg=query.messages.last %}
+                {% if last_msg and last_msg.sender.role == 'user' and last_msg.id == msg.id and query.status != "closed" %}
+                    <div class="edit-section">
+                        <a href="{% url 'edit_user_last_message' query.id %}" class="edit-btn">
+                            Edit
+                        </a>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+    {% if query.status != "closed" %}
+    <form action="{% url 'user_reply_query' query.id %}" 
+          method="POST" 
+          enctype="multipart/form-data"
+          class="chat-form">
+        {% csrf_token %}
+
+        <textarea name="message"
+                  placeholder="Type follow-up message..."
+                  required></textarea>
+
+        <div class="form-bottom">
+            <input type="file" name="attachment">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+    {% else %}
+        <div class="closed-box">
+            This ticket has been closed.
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

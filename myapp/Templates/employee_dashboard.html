@@ -1,0 +1,180 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Employee
+Dashboard{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/employee_dashboard.css' %}" />
+{% endblock %} {% block content %}
+<div class="employee-dashboard-container">
+  <div class="dashboard-header">
+    <h1>Welcome, {{ name }} 👨‍💼</h1>
+    <p>Employee Dashboard</p>
+  </div>
+
+  <div class="top-actions">
+    <a href="{% url 'employee_add_query_admin' %}" class="btn-primary">
+      Raise Query to Admin
+    </a>
+  </div>
+
+  <form method="GET" class="filter-form">
+    <input
+      type="text"
+      name="search"
+      placeholder="Search by user name"
+      value="{{ request.GET.search }}"
+    />
+
+    <select name="status">
+      <option value="">All Status</option>
+      <option value="pending">Pending</option>
+      <option value="in_progress">In Progress</option>
+      <option value="pending_admin">Pending Admin</option>
+      <option value="resolved">Resolved</option>
+    </select>
+
+    <select name="priority">
+      <option value="">All Priority</option>
+      <option value="high">High</option>
+      <option value="normal">Normal</option>
+    </select>
+
+    <button type="submit">Filter</button>
+  </form>
+
+  <!-- RADIO CONTROLS -->
+  <input type="radio" name="tabs" id="tab1" checked />
+  <input type="radio" name="tabs" id="tab2" />
+  <input type="radio" name="tabs" id="tab3" />
+  <input type="radio" name="tabs" id="tab4" />
+  <input type="radio" name="tabs" id="tab5" />
+
+  <!-- TABS -->
+  <div class="dashboard-tabs">
+    <label for="tab1" class="tab-btn">
+      Unclaimed ({{ unclaimed_queries.count }})
+    </label>
+    <label for="tab2" class="tab-btn">
+      My Active ({{ my_active_queries.count }})
+    </label>
+    <label for="tab3" class="tab-btn">
+      Forwarded ({{ forwarded_queries.count }})
+    </label>
+    <label for="tab4" class="tab-btn">
+      Resolved ({{ resolved_queries.count }})
+    </label>
+    <label for="tab5" class="tab-btn">
+      My Admin Queries ({{ employee_queries.count }})
+    </label>
+  </div>
+
+  <!-- 🔴 UNCLAIMED -->
+  <div id="unclaimed" class="query-section active-section">
+    {% for q in unclaimed_queries %}
+    <div
+      class="query-card {% if q.priority == 'high' %}high-priority{% endif %}"
+    >
+      <p><b>User:</b> {{ q.user.name }}</p>
+      <p><b>Q.</b> {{ q.title }}</p>
+
+      {% if q.priority == "high" %}
+      <span class="urgent-badge">High Priority</span>
+      {% endif %} {% if q.is_urgent %}
+      <span class="urgent-badge">Urgent</span>
+      {% endif %}
+
+      <a href="{% url 'claim_query' q.id %}" class="btn claim-btn"> Claim </a>
+    </div>
+    {% empty %}
+    <p class="no-data">No Unclaimed Queries</p>
+    {% endfor %}
+  </div>
+
+  <!-- 🟡 ACTIVE -->
+  <div id="active" class="query-section">
+    {% for q in my_active_queries %}
+    <div class="query-card">
+      <p><b>User:</b> {{ q.user.name }}</p>
+            <p><b>Q.</b> {{ q.title }}</p>
+
+
+      <p class="created-time">Created: {{ q.created_at|timesince }} ago</p>
+
+      {% if q.priority == "high" %}
+      <span class="urgent-badge">High Priority</span>
+      {% endif %} {% if q.is_urgent %}
+      <span class="urgent-badge">Urgent</span>
+      {% endif %} {% with last_msg=q.messages.last %} {% if last_msg %}
+      <p><b>Last Message:</b> {{ last_msg.message|truncatechars:80 }}</p>
+      {% endif %} {% endwith %}
+
+      <a href="{% url 'employee_reply_query' q.id %}" class="btn manage-btn">
+        Manage
+      </a>
+    </div>
+    {% empty %}
+    <p class="no-data">No Active Queries</p>
+    {% endfor %}
+  </div>
+
+  <!-- 🔵 FORWARDED -->
+  <div id="forwarded" class="query-section">
+    {% for q in forwarded_queries %}
+    <div class="query-card forwarded">
+      <p><b>User:</b> {{ q.user.name }}</p>
+      <p><b>Q.</b> {{ q.title }}</p>
+
+      <span class="status-badge">Waiting for Admin</span>
+
+      {% with last_msg=q.messages.last %} {% if last_msg %}
+      <p><b>Latest:</b> {{ last_msg.message|truncatechars:60 }}</p>
+      {% endif %} {% endwith %}
+    </div>
+    {% empty %}
+    <p class="no-data">No Forwarded Queries</p>
+    {% endfor %}
+  </div>
+
+  <!-- 🟢 RESOLVED -->
+  <div id="resolved" class="query-section">
+    {% for q in resolved_queries %}
+    <div class="query-card resolved">
+      <p><b>User:</b> {{ q.user.name }}</p>
+      <p><b>Q.</b> {{ q.title }}</p>
+
+      <p><b>Status:</b> Resolved</p>
+
+      {% with last_msg=q.messages.last %} {% if last_msg %}
+      <p><b>Last Reply:</b> {{ last_msg.message|truncatechars:80 }}</p>
+      {% endif %} {% endwith %}
+    </div>
+    {% empty %}
+    <p class="no-data">No Resolved Queries</p>
+    {% endfor %}
+  </div>
+
+  <!-- 🟣 MY ADMIN QUERIES -->
+  <div id="my_admin_queries" class="query-section">
+    {% for q in employee_queries %}
+    <div class="query-card">
+       <p><b>Q.</b> {{ q.title }}</p>
+
+      <p>Status: {{ q.status }}</p>
+
+      {% with last_msg=q.messages.last %}
+    {% if last_msg %}
+        <p><b>Last Message:</b> {{ last_msg.message|truncatechars:80 }}</p>
+    {% endif %}
+{% endwith %}
+
+{% if q.status != "closed" %}
+    <a href="{% url 'employee_reply_admin_query' q.id %}" class="btn manage-btn">
+        Open Chat
+    </a>
+{% else %}
+    <span class="closed-label">Closed</span>
+{% endif %}       
+
+    
+  </div>
+  {% endfor %}   
+</div>
+</div>
+{% endblock %}

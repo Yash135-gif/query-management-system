@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard | QuerySystem{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="admin-wrapper">
+
+    <!-- HEADER -->
+    <div class="admin-hero">
+        <div>
+            <h1>Welcome back, {{ name }}</h1>
+            <p>Administrator Control Panel</p>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h2>{{ total_employees }}</h2>
+            <span>Total Employees</span>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ total_queries }}</h2>
+            <span>Total Queries</span>
+        </div>
+
+        <div class="stat-card highlight-card">
+            <h2>{{ pending_queries }}</h2>
+            <span>Pending Replies</span>
+        </div>
+    </div>
+
+    <!-- ACTION MODULES -->
+    <div class="admin-modules">
+
+        <a href="{% url 'admin_employee_queries' %}" class="module-card">
+            <h3>Employee Queries</h3>
+            <p>Respond to internal employee escalations.</p>
+        </a>
+
+        <a href="{% url 'manage_users' %}" class="module-card">
+            <h3>Manage Users</h3>
+            <p>Upgrade users to employees and manage roles.</p>
+        </a>
+
+        <a href="{% url 'admin_user_queries' %}" class="module-card">
+            <h3>User Forwarded Queries</h3>
+            <p>Review escalated user issues.</p>
+        </a>
+
+        <a href="{% url 'add_department' %}" class="module-card">
+            <h3>Manage Departments</h3>
+            <p>Create and organize departments efficiently.</p>
+        </a>
+        <a href="{% url 'show_employees' %}" class="module-card">
+            <h3>Show Employees</h3>
+            <p>View all registered employees with department details.</p>
+        </a>
+
+    </div>
+
+    <!-- RESPONSIBILITY PANEL -->
+    <div class="admin-info-panel">
+        <h4>Administrator Responsibilities</h4>
+        <ul>
+            <li>Monitor and resolve escalated queries</li>
+            <li>Manage employees and departments</li>
+            <li>Ensure structured communication flow</li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock content %}

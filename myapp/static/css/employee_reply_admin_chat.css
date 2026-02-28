@@ -1,0 +1,263 @@
+/* ===============================
+   CHAT WRAPPER
+================================ */
+
+.chat-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    color: var(--text-primary);
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ===============================
+   STATUS BADGE
+================================ */
+
+.status-badge {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.status-badge.pending {
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+}
+
+.status-badge.in_progress {
+    background: rgba(59,130,246,0.15);
+    color: #3b82f6;
+}
+
+.status-badge.pending_admin {
+    background: rgba(245,158,11,0.15);
+    color: #f59e0b;
+}
+
+.status-badge.closed {
+    background: rgba(148,163,184,0.15);
+    color: #94a3b8;
+}
+
+/* ===============================
+   CLOSE BUTTON
+================================ */
+
+.close-btn {
+    font-size: 13px;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: rgba(239,68,68,0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239,68,68,0.3);
+    transition: 0.2s ease;
+}
+
+.close-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* ===============================
+   CHAT BODY
+================================ */
+
+.chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Scrollbar (optional clean look) */
+.chat-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+/* ===============================
+   MESSAGE BUBBLES
+================================ */
+
+.chat-message {
+    max-width: 72%;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    position: relative;
+    line-height: 1.5;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Employee (Right Side) */
+.chat-message.employee {
+    margin-left: auto;
+    background: rgba(59,130,246,0.15);
+    text-align: right;
+}
+
+/* Admin (Left Side) */
+.chat-message.admin {
+    background: #020617;
+    border: 1px solid var(--border-color);
+}
+
+/* Attachment Link */
+.attachment-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.attachment-link:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   MESSAGE FOOTER
+================================ */
+
+.message-footer {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Edit Link */
+.edit-link {
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   FORM
+================================ */
+
+.chat-form {
+    border-top: 1px solid var(--border-color);
+    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Textarea */
+.chat-form textarea {
+    width: 100%;
+    resize: none;
+    padding: 12px;
+    border-radius: 10px;
+    background: #020617;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.chat-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* File + Button Row */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* File Input */
+.chat-form input[type="file"] {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Send Button */
+.chat-form button {
+    padding: 10px 20px;
+    background: var(--accent);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: 500;
+}
+
+.chat-form button:hover {
+    opacity: 0.85;
+}
+
+/* ===============================
+   STATES
+================================ */
+
+.empty-text {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-secondary);
+}
+
+.closed-box {
+    text-align: center;
+    padding: 12px;
+    margin-top: 10px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 10px;
+    color: #ef4444;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

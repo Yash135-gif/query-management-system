@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/user_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+
+    <div class="dashboard-header user-header">
+        <h2>Welcome, {{ name }} 👤</h2>
+        <p>You are logged in as User</p>
+    </div>
+
+    <div class="dashboard-cards">
+
+        <a href="{% url 'user_add_query' %}" class="card">
+            <div class="card-icon">📤</div>
+            <div class="card-text">Raise a Query</div>
+        </a>
+
+        <a href="{% url 'my_queries' %}" class="card">
+            <div class="card-icon">📋</div>
+            <div class="card-text">View My Queries</div>
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}

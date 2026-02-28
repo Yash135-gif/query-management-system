@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Forwarded User Queries{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin_user_queries.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="admin-queries-container">
+
+    <!-- Top Bar -->
+    <div class="page-top-bar">
+        <a href="{% url 'admin_dashboard' %}" class="back-btn">← Back</a>
+    </div>
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h1>Forwarded User Queries</h1>
+        <p>Manage and respond to user-submitted tickets</p>
+    </div>
+
+    <!-- Query List -->
+    <div class="queries-container">
+
+        {% for q in queries %}
+        <div class="query-card">
+
+            <div class="query-header">
+                <h3>{{ q.title }}</h3>
+
+                <span class="status-badge {{ q.status }}">
+                    {{ q.get_status_display }}
+                </span>
+            </div>
+
+            <div class="query-meta">
+
+                <div class="meta-item">
+                    <span class="label">User</span>
+                    <span>{{ q.user.name }}</span>
+                </div>
+
+                <div class="meta-item">
+                    <span class="label">Priority</span>
+                    <span class="priority-badge {{ q.priority }}">
+                        {{ q.priority|title }}
+                    </span>
+                </div>
+
+                <div class="meta-item">
+                    <span class="label">Created</span>
+                    <span>{{ q.created_at|date:"d M Y • H:i" }}</span>
+                </div>
+
+            </div>
+
+            <div class="card-actions">
+                {% if q.status != "closed" %}
+                    <a href="{% url 'admin_reply_user_query' q.id %}" class="btn open-btn">
+                        Open Query
+                    </a>
+                {% else %}
+                    <span class="closed-text">Query Closed</span>
+                {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+            <div class="empty-state">
+                <p>No forwarded queries available.</p>
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+{% endblock %}

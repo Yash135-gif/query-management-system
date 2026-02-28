@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Departments | QuerySystem{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/add_department.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="page-top-bar">
+    <a href="{% url 'admin_dashboard' %}" class="back-btn">← Back</a>
+</div>
+
+<div class="page-header">
+    <h2>Department Management</h2>
+    <p>Create and organize system departments</p>
+</div>
+
+<div class="department-wrapper">
+
+    <!-- ADD DEPARTMENT CARD -->
+    <div class="department-card">
+
+        <div class="card-header">
+            <h3>Add New Department</h3>
+        </div>
+
+        <form method="POST" class="department-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="dept-name">Department Name</label>
+                <input 
+                    type="text" 
+                    id="dept-name"
+                    name="name" 
+                    placeholder="Enter department name"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn-primary full-btn">
+                Add Department
+            </button>
+
+        </form>
+    </div>
+
+    <!-- EXISTING DEPARTMENTS CARD -->
+    <div class="department-card">
+
+        <div class="card-header">
+            <h3>Existing Departments</h3>
+        </div>
+
+        <div class="department-list">
+            {% for dept in departments %}
+                <div class="department-item">
+                    <span class="dept-name">{{ dept.name }}</span>
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    No departments added yet.
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

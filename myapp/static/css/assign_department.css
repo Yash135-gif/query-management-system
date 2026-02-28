@@ -1,0 +1,135 @@
+/* ===============================
+   PAGE WRAPPER
+================================ */
+
+.assign-page {
+    max-width: 700px;
+    margin: auto;
+}
+
+/* ===============================
+   CARD
+================================ */
+
+.assign-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 30px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.assign-header {
+    margin-bottom: 20px;
+}
+
+.assign-header h2 {
+    margin-bottom: 5px;
+}
+
+.assign-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ===============================
+   EMPLOYEE INFO
+================================ */
+
+.employee-info {
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.current-dept {
+    font-weight: 500;
+    color: var(--accent);
+}
+
+/* ===============================
+   FORM
+================================ */
+
+.assign-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background: #020617;
+    border: 1px solid var(--border-color);
+    color: white;
+    cursor: pointer;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+
+.btn-submit {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+    text-align: center;
+    padding: 20px;
+    background: rgba(239,68,68,0.08);
+    border-radius: 10px;
+    color: #ef4444;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+    .assign-card {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/edit_message.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-container">
+
+    <div class="page-top-bar">
+        <a href="#" class="back-btn">← Back to Chat</a>
+    </div>
+
+    <div class="edit-card">
+        <h2>Edit Your Reply</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required>{{ message.message }}</textarea>
+            </div>
+
+            {% if message.attachment %}
+            <div class="current-attachment">
+                <p>Current Attachment:</p>
+                <a href="{{ message.attachment.url }}" target="_blank">
+                    View Existing File
+                </a>
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="attachment">Change Attachment (Optional)</label>
+                <input type="file" name="attachment" id="attachment">
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Update Reply
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

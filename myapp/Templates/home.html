@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome | QuerySystem{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Smart Query Management Made Simple</h1>
+        <p>
+            Submit queries, track responses, and communicate seamlessly 
+            with employees and administrators — all in one powerful platform.
+        </p>
+
+        {% if not request.session.auth %}
+            <div class="hero-buttons">
+                <a href="{% url 'login' %}" class="btn-primary">Login</a>
+                <a href="{% url 'register' %}" class="btn-ghost">Create Account</a>
+            </div>
+        {% else %}
+            <div class="hero-buttons">
+                {% if request.session.auth.role == 'user' %}
+                    <a href="{% url 'user_dashboard' %}" class="btn-primary" style="text-decoration: none;">Go to Dashboard</a>
+                {% elif request.session.auth.role == 'employee' %}
+                    <a href="{% url 'employee_dashboard' %}" class="btn-primary" style="text-decoration: none;">Go to Dashboard</a>
+                {% elif request.session.auth.role == 'admin' %}
+                    <a href="{% url 'admin_dashboard' %}" class="btn-primary" style="text-decoration: none;">Go to Dashboard</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="feature-card">
+        <h3>Real-Time Tracking</h3>
+        <p>Monitor the status of your queries instantly and stay updated.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Role-Based Dashboards</h3>
+        <p>Separate dashboards for Users, Employees, and Admins.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Organized Communication</h3>
+        <p>Structured message system for efficient collaboration.</p>
+    </div>
+</section>
+
+{% endblock content %}

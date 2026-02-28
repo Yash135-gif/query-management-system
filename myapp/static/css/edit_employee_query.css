@@ -1,0 +1,128 @@
+/* ===============================
+   PAGE WRAPPER
+================================ */
+
+.edit-query-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: var(--text-primary);
+}
+
+/* ===============================
+   TOP BAR
+================================ */
+
+.page-top-bar {
+    margin-bottom: 18px;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    opacity: 0.8;
+}
+
+/* ===============================
+   FORM CONTAINER
+================================ */
+
+.form-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.form-container h2 {
+    margin-bottom: 22px;
+    font-weight: 600;
+}
+
+/* ===============================
+   FORM GROUP
+================================ */
+
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+/* ===============================
+   TEXTAREA
+================================ */
+
+.form-group textarea {
+    resize: none;
+    min-height: 130px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #020617;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+    transition: 0.2s ease;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* ===============================
+   FILE INPUT
+================================ */
+
+.form-group input[type="file"] {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 8px;
+    border-radius: 8px;
+    background: #020617;
+    border: 1px solid var(--border-color);
+}
+
+/* ===============================
+   BUTTON
+================================ */
+
+.btn-primary {
+    margin-top: 10px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    opacity: 0.85;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+}

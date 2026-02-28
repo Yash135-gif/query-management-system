@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Employee Queries | QuerySystem{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin_employee_queries.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="admin-queries-wrapper">
+
+    <!-- Back -->
+    <div class="page-top-bar">
+        <a href="{% url 'admin_dashboard' %}" class="back-btn">← Back</a>
+    </div>
+
+    <!-- Header -->
+    <div class="page-header">
+        <h2>Employee Queries</h2>
+        <p>Monitor and manage employee escalations</p>
+    </div>
+
+    <!-- Filter Card -->
+    <div class="filter-card">
+        <form method="GET" class="filter-form">
+
+            <div class="filter-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="All">All Status</option>
+                    <option value="pending" {% if selected_status == "pending" %}selected{% endif %}>Pending</option>
+                    <option value="in_progress" {% if selected_status == "in_progress" %}selected{% endif %}>In Progress</option>
+                    <option value="pending_admin" {% if selected_status == "pending_admin" %}selected{% endif %}>Pending Admin</option>
+                    <option value="closed" {% if selected_status == "closed" %}selected{% endif %}>Closed</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Department</label>
+                <select name="department">
+                    <option value="All">All Departments</option>
+                    {% for dept in departments %}
+                        <option value="{{ dept.id }}" {% if selected_department == dept.id|stringformat:"s" %}selected{% endif %}>
+                            {{ dept.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Search</label>
+                <input 
+                    type="text" 
+                    name="search" 
+                    placeholder="Search by employee name"
+                    value="{{ search_value|default:'' }}"
+                >
+            </div>
+
+            <div class="filter-actions">
+                <button type="submit" class="btn apply-btn">Apply</button>
+                <a href="{% url 'admin_employee_queries' %}" class="btn reset-btn">Reset</a>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Queries List -->
+    <div class="queries-grid">
+
+        {% for q in queries %}
+        <div class="query-card">
+
+            <div class="query-top">
+                <h4>{{ q.employee.name }}</h4>
+                <span class="status {{ q.status }}">
+                    {{ q.get_status_display }}
+                </span>
+            </div>
+
+            <p class="query-question">
+                {{ q.question }}
+            </p>
+
+            <div class="query-footer">
+                {% if q.status != "closed" %}
+                    <a href="{% url 'admin_reply_employee_query' q.id %}" class="btn manage-btn">
+                        Open Chat
+                    </a>
+                {% else %}
+                    <span class="closed-label">Closed</span>
+                {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+            <div class="empty-state">
+                No employee queries found.
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

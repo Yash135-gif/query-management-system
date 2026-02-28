@@ -1,0 +1,61 @@
+body {
+    background: #0f172a;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e2e8f0;
+}
+
+.employees-page {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    color: #3b82f6;
+}
+
+.employees-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.employees-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.employees-table th,
+.employees-table td {
+    padding: 14px;
+    text-align: left;
+}
+
+.employees-table thead {
+    background: #1e40af;
+    color: white;
+}
+
+.employees-table tbody tr {
+    border-bottom: 1px solid #334155;
+    transition: 0.2s;
+}
+
+.employees-table tbody tr:hover {
+    background: #263449;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+}

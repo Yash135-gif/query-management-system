@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Query{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/employee_reply.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="reply-wrapper">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <a href="{% url 'employee_dashboard' %}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="reply-container">
+
+        <h2 class="page-title">Manage Query</h2>
+
+        <!-- Query Info -->
+        <div class="query-card">
+            <p><strong>User:</strong> {{ query.user.name }}</p>
+            <p><strong>Title:</strong> {{ query.title }}</p>
+
+            <p><strong>Initial Message:</strong>
+                {% with first_msg=query.messages.first %}
+                    {% if first_msg %}
+                        {{ first_msg.message|truncatechars:150 }}
+                    {% else %}
+                        No initial message.
+                    {% endif %}
+                {% endwith %}
+            </p>
+
+            {% if query.forwarded_to_admin %}
+                <span class="badge forwarded">Forwarded to Admin</span>
+            {% endif %}
+        </div>
+
+        <!-- Conversation -->
+        <div class="conversation-box">
+            <h3>Conversation</h3>
+
+            <div class="messages-container">
+                {% for msg in query.messages.all %}
+                    {% if msg.sender %}
+
+                        <div class="message 
+                            {% if msg.sender.role == 'employee' %}
+                                employee
+                            {% elif msg.sender.role == 'admin' %}
+                                admin
+                            {% else %}
+                                user
+                            {% endif %}
+                        ">
+
+                            <div class="message-header">
+                                <span class="sender-name">
+                                    {% if msg.sender.role == "employee" %}
+                                        Employee
+                                    {% elif msg.sender.role == "admin" %}
+                                        Admin
+                                    {% else %}
+                                        User
+                                    {% endif %}
+                                </span>
+
+                                <span class="message-time">
+                                    {{ msg.created_at|date:"d M Y H:i" }}
+                                </span>
+                            </div>
+
+                            <div class="message-body">
+                                <p>{{ msg.message }}</p>
+
+                                {% if msg.attachment and msg.attachment.url %}
+                                    <a href="{{ msg.attachment.url }}" 
+                                       target="_blank"
+                                       class="attachment-link">
+                                        📎 View Attachment
+                                    </a>
+                                {% endif %}
+                            </div>
+
+                            {% with last_msg=query.messages.last %}
+                                {% if last_msg and last_msg.sender.role == 'employee' and last_msg.id == msg.id and query.status != "closed" %}
+                                    <div class="edit-box">
+                                        <a href="{% url 'edit_employee_last_message' query.id %}" 
+                                           class="edit-btn">
+                                            Edit
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+
+                        </div>
+
+                    {% endif %}
+                {% empty %}
+                    <p class="empty-text">No conversation yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Error -->
+        {% if error %}
+            <div class="error-box">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <!-- Reply Form -->
+        {% if query.status != "closed" %}
+        <form method="POST" enctype="multipart/form-data" class="reply-form">
+            {% csrf_token %}
+
+            <textarea name="reply" 
+                      placeholder="Type your reply here..." 
+                      required></textarea>
+
+            <input type="file" name="attachment">
+
+            <div class="button-group">
+
+                {% if query.status == "in_progress" %}
+                    <button type="submit" name="action" value="reply" class="btn primary">
+                        Send Reply
+                    </button>
+
+                    {% if not query.forwarded_to_admin %}
+                    <button type="submit" name="action" value="forward" class="btn warning">
+                        Forward to Admin
+                    </button>
+                    {% endif %}
+                {% endif %}
+
+                {% if query.status == "pending_admin" %}
+                    <button type="submit" name="action" value="reply" class="btn primary">
+                        Reply (Admin Included)
+                    </button>
+                {% endif %}
+
+                <button type="submit" name="action" value="close" class="btn danger">
+                    Close Ticket
+                </button>
+
+            </div>
+        </form>
+        {% else %}
+            <div class="closed-text">
+                This ticket is closed.
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

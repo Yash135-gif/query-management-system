@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Employee Chat{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin_reply_employee.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="chat-page">
+
+    <!-- Back Button -->
+    <div class="page-top-bar">
+        <a href="{% url 'employee_queries' %}" class="back-btn">← Back</a>
+    </div>
+
+    <div class="chat-wrapper">
+
+        <!-- Header -->
+        <div class="chat-header">
+            <div>
+                <h3>Chat with Admin</h3>
+                <span class="status-badge {{ query.status }}">
+                    {{ query.get_status_display }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-body">
+
+            {% for msg in messages %}
+
+                {% if msg.sender_role == "admin" %}
+                    <div class="chat-message admin">
+                        <p>{{ msg.message }}</p>
+
+                        {% if msg.attachment %}
+                            <a href="{{ msg.attachment.url }}" target="_blank">
+                                View Attachment
+                            </a>
+                        {% endif %}
+
+                        <span class="time">
+                            {{ msg.created_at|date:"d M Y H:i" }}
+                        </span>
+                    </div>
+
+                {% else %}
+                    <div class="chat-message employee">
+                        <p>{{ msg.message }}</p>
+
+                        {% if msg.attachment %}
+                            <a href="{{ msg.attachment.url }}" target="_blank">
+                                View Attachment
+                            </a>
+                        {% endif %}
+
+                        <span class="time">
+                            {{ msg.created_at|date:"d M Y H:i" }}
+                        </span>
+
+                        {% if forloop.last and query.status != "closed" %}
+                            <a href="{% url 'employee_edit_message' msg.id %}" class="edit-link">
+                                Edit
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+            {% empty %}
+                <p class="empty-chat">No messages yet.</p>
+            {% endfor %}
+
+        </div>
+
+        <!-- Reply Form -->
+        {% if query.status != "closed" %}
+        <form method="POST" enctype="multipart/form-data" class="chat-form">
+            {% csrf_token %}
+            <textarea name="reply" placeholder="Type your message..." required></textarea>
+            <input type="file" name="attachment">
+            <button type="submit">Send</button>
+        </form>
+        {% else %}
+            <p class="closed-info">
+                This ticket has been closed by admin.
+            </p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

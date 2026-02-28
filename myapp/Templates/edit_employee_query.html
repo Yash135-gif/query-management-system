@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/edit_employee_query.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="edit-query-page">
+
+    <!-- Back Button -->
+    <div class="page-top-bar">
+        <a href="{% url 'employee_dashboard' %}" class="back-btn">← Back</a>
+    </div>
+
+    <div class="form-container">
+        <h2>Edit Query</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Edit Question</label>
+                <textarea name="question" required>{{ query.question }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Update Attachment (optional)</label>
+                <input type="file" name="attachment">
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Update Query
+            </button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

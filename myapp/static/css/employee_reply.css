@@ -1,0 +1,275 @@
+/* ============================= */
+/* Wrapper */
+/* ============================= */
+
+.reply-wrapper {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ============================= */
+/* Top Bar */
+/* ============================= */
+
+.top-bar {
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Container */
+/* ============================= */
+
+.reply-container {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.page-title {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Query Card */
+/* ============================= */
+
+.query-card {
+    background: #111c2e;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    color: #cbd5e1;
+}
+
+.badge.forwarded {
+    display: inline-block;
+    margin-top: 10px;
+    background: #1e3a5f;
+    color: #38bdf8;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+/* ============================= */
+/* Conversation Box */
+/* ============================= */
+
+.conversation-box {
+    margin-bottom: 25px;
+}
+
+.conversation-box h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.messages-container {
+    max-height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background: #0b1220;
+    border-radius: 10px;
+    border: 1px solid #1e293b;
+}
+
+/* ============================= */
+/* Messages */
+/* ============================= */
+
+.message {
+    max-width: 70%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* User message */
+.message.user {
+    align-self: flex-start;
+    background: #1e293b;
+}
+
+/* Employee message */
+.message.employee {
+    align-self: flex-end;
+    background: #1d4ed8;
+}
+
+/* Admin message */
+.message.admin {
+    align-self: flex-start;
+    background: #134e4a;
+}
+
+/* ============================= */
+/* Message Header */
+/* ============================= */
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #cbd5e1;
+}
+
+.message-body p {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.attachment-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.attachment-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Edit Button */
+/* ============================= */
+
+.edit-box {
+    margin-top: 6px;
+}
+
+.edit-btn {
+    font-size: 12px;
+    color: #facc15;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Error Box */
+/* ============================= */
+
+.error-box {
+    background: #2e1a1a;
+    color: #ef4444;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* ============================= */
+/* Reply Form */
+/* ============================= */
+
+.reply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.reply-form textarea {
+    resize: none;
+    height: 90px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    background: #0b1220;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.reply-form textarea::placeholder {
+    color: #94a3b8;
+}
+
+.reply-form input[type="file"] {
+    color: #cbd5e1;
+}
+
+/* ============================= */
+/* Buttons */
+/* ============================= */
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* Primary */
+.btn.primary {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+.btn.primary:hover {
+    background: #2563eb;
+}
+
+/* Warning */
+.btn.warning {
+    background: #facc15;
+    color: #000;
+}
+
+.btn.warning:hover {
+    background: #eab308;
+}
+
+/* Danger */
+.btn.danger {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.btn.danger:hover {
+    background: #dc2626;
+}
+
+/* ============================= */
+/* Closed Text */
+/* ============================= */
+
+.closed-text {
+    padding: 15px;
+    text-align: center;
+    background: #1e293b;
+    color: #ef4444;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.empty-text {
+    color: #94a3b8;
+}

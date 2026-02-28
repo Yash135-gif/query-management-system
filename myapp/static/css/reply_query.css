@@ -1,0 +1,71 @@
+/* Page wrapper */
+.reply-page {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Card */
+.reply-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    border-top: 6px solid #4f46e5;
+}
+
+/* Heading */
+.reply-card h2 {
+    margin-bottom: 20px;
+    color: #1e293b;
+    text-align: center;
+}
+
+/* Text info */
+.reply-card p {
+    margin-bottom: 12px;
+    color: #334155;
+    font-size: 15px;
+}
+
+/* Question box */
+.question-box {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Textarea */
+.reply-card textarea {
+    width: 100%;
+    height: 140px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5f5;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+}
+
+.reply-card textarea:focus {
+    border-color: #4f46e5;
+}
+
+/* Button */
+.send-btn {
+    margin-top: 20px;
+    padding: 10px 26px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.send-btn:hover {
+    background: #3730a3;
+}

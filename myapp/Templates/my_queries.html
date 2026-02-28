@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Queries{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/my_queries.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="my-queries-wrapper">
+
+    <div class="page-top-bar">
+        <a href="{% url 'user_dashboard' %}" class="back-btn">← Back to Dashboard</a>
+    </div>
+
+    <div class="queries-container">
+        <h2>My Queries</h2>
+
+        {% for q in queries %}
+        <div class="query-card">
+
+            <div class="card-header">
+                <h3>{{ q.title }}</h3>
+                <span class="status-badge {{ q.status }}">
+                    {% if q.status == "pending" %}
+                        Pending
+                    {% elif q.status == "in_progress" %}
+                        In Progress
+                    {% elif q.status == "pending_admin" %}
+                        Forwarded to Admin
+                    {% elif q.status == "closed" %}
+                        Closed
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="card-body">
+                <p><strong>Department:</strong>
+                    {% if q.department %}
+                        {{ q.department.name }}
+                    {% else %}
+                        Not Assigned
+                    {% endif %}
+                </p>
+
+                <p class="waiting-text">
+                    {% if q.status == "pending_admin" %}
+                        Waiting for Admin response...
+                    {% elif q.status == "closed" %}
+                        This query has been resolved.
+                    {% else %}
+                        Waiting for Employee response...
+                    {% endif %}
+                </p>
+
+                <small class="date-text">
+                    Asked on: {{ q.created_at|date:"d M Y H:i" }}
+                </small>
+            </div>
+
+            <div class="card-footer">
+                <a href="{% url 'user_query_detail' q.id %}" class="btn open-btn">
+                    Open Conversation
+                </a>
+
+                {% if q.status == "pending" and not q.assigned_employee %}
+                     
+
+                    <a href="{% url 'delete_user_query' q.id %}"
+                       onclick="return confirm('Are you sure?')"
+                       class="btn delete-btn">
+                        Delete
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+            <div class="empty-box">
+                <p>You haven't raised any queries yet.</p>
+                <a href="{% url 'user_add_query' %}" class="btn create-btn">
+                    Raise New Query
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+.edit-query-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f4f6ff, #e8edff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Top Bar */
+.page-top-bar {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+/* Back Button */
+.back-btn {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #6c63ff;
+    color: white;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #574fd6;
+}
+
+/* Form Container */
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.form-group select,
+.form-group textarea,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #6c63ff;
+    outline: none;
+}
+
+/* Submit Button */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #6c63ff;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #574fd6;
+}

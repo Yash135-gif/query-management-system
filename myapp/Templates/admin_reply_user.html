@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Admin Reply | QuerySystem{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin_reply_user.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="admin-reply-wrapper">
+
+    <!-- Top Bar -->
+    <div class="page-top-bar">
+        <a href="{% url 'admin_user_queries' %}" class="back-btn">← Back</a>
+    </div>
+
+    <!-- Header -->
+    <div class="page-header">
+        <h2>Admin Reply Panel</h2>
+        <p>Manage and respond to user query efficiently</p>
+    </div>
+
+    <!-- Query Info -->
+    <div class="query-info-card">
+
+        <div class="info-row">
+            <span class="info-label">User</span>
+            <span>{{ query.user.name }}</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Department</span>
+            <span>{{ query.department.name }}</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Subject</span>
+            <span>{{ query.question }}</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Status</span>
+            <span class="status-badge {{ query.status }}">
+                {{ query.get_status_display }}
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Conversation -->
+    <div class="conversation-card">
+
+        {% for msg in messages %}
+            <div class="message-block 
+                {% if msg.sender.role == 'admin' %}admin-msg
+                {% elif msg.sender.role == 'employee' %}employee-msg
+                {% else %}user-msg{% endif %}">
+
+                <!-- Message Header -->
+                <div class="message-top">
+                    <span class="sender-name">
+                        {% if msg.sender.role == "admin" %}
+                            Admin
+                        {% elif msg.sender.role == "employee" %}
+                            Employee
+                        {% else %}
+                            User
+                        {% endif %}
+                    </span>
+
+                    <span class="message-time">
+                        {{ msg.created_at|date:"d M Y • H:i" }}
+                    </span>
+                </div>
+
+                <!-- Message Body -->
+                <div class="message-content">
+                    <p>{{ msg.message }}</p>
+
+                    {% if msg.attachment %}
+                        <a href="{{ msg.attachment.url }}" 
+                           target="_blank" 
+                           class="attachment-link">
+                            📎 View Attachment
+                        </a>
+                    {% endif %}
+                </div>
+
+                <!-- Edit Button (Only Last Admin Message + Open Ticket) -->
+                {% if msg.sender.role == "admin" and forloop.last and query.status != "closed" %}
+                    <div class="edit-wrapper">
+                        <a href="{% url 'edit_admin_message' msg.id %}" class="edit-btn">
+                            Edit Message
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+            <div class="empty-state">
+                <p>No conversation yet. Start the discussion below.</p>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- Reply Section -->
+    {% if query.status != "closed" %}
+        <div class="reply-section">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <label for="admin_reply">Write Reply</label>
+                <textarea name="admin_reply" 
+                          id="admin_reply" 
+                          rows="5" 
+                          placeholder="Type your reply here..." 
+                          required></textarea>
+
+                <div class="file-upload">
+                    <input type="file" name="attachment">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" 
+                            name="action" 
+                            value="reply" 
+                            class="reply-btn">
+                        Send Reply
+                    </button>
+
+                    <button type="submit" 
+                            name="action" 
+                            value="close" 
+                            class="close-btn">
+                        Close Query
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    {% else %}
+        <div class="closed-notice">
+            <p>This query has been closed.</p>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

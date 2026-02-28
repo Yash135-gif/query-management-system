@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Message{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/edit_message.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-page-wrapper">
+
+    <div class="page-top-bar">
+        <a href="javascript:history.back()" class="back-btn">← Back</a>
+    </div>
+
+    <div class="edit-card">
+
+        <h2>Edit Your Message</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea 
+                    id="message"
+                    name="message"
+                    rows="6"
+                    required
+                >{{ message.message }}</textarea>
+            </div>
+
+            {% if message.attachment %}
+            <div class="current-attachment">
+                <p>Current Attachment:</p>
+                <a href="{{ message.attachment.url }}" target="_blank">
+                    View Existing File
+                </a>
+            </div>
+            {% endif %}
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                    Update Message
+                </button>
+
+                <a href="javascript:history.back()" class="btn-cancel">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

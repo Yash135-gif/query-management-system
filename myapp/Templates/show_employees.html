@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Employees{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/show_employees.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="employees-page">
+
+    <div class="page-top-bar">
+        <a href="{% url 'admin_dashboard' %}" class="back-btn">← Back</a>
+    </div>
+
+    <div class="employees-container">
+        <h2>All Employees</h2>
+
+        <table class="employees-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in employees %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ emp.user.name }}</td>
+                    <td>{{ emp.user.email }}</td>
+                    <td>
+                        {% if emp.department %}
+                            {{ emp.department.name }}
+                        {% else %}
+                            Not Assigned
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="empty-msg">
+                        No employees found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

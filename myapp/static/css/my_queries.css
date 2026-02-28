@@ -1,0 +1,207 @@
+/* ============================= */
+/* Wrapper */
+/* ============================= */
+
+.my-queries-wrapper {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ============================= */
+/* Top Bar */
+/* ============================= */
+
+.page-top-bar {
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Heading */
+/* ============================= */
+
+.queries-container h2 {
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Query Card */
+/* ============================= */
+
+.query-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.query-card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+}
+
+/* ============================= */
+/* Card Header */
+/* ============================= */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Status Badge */
+/* ============================= */
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Status Colors */
+
+.status-badge.pending {
+    background: #1e293b;
+    color: #facc15;
+}
+
+.status-badge.in_progress {
+    background: #1e3a5f;
+    color: #38bdf8;
+}
+
+.status-badge.pending_admin {
+    background: #1e293b;
+    color: #a78bfa;
+}
+
+.status-badge.closed {
+    background: #2e1a1a;
+    color: #ef4444;
+}
+
+/* ============================= */
+/* Card Body */
+/* ============================= */
+
+.card-body p {
+    margin: 5px 0;
+    color: #cbd5e1;
+}
+
+.waiting-text {
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.date-text {
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* ============================= */
+/* Card Footer */
+/* ============================= */
+
+.card-footer {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ============================= */
+/* Buttons */
+/* ============================= */
+
+.btn {
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* Open Button */
+.open-btn {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+.open-btn:hover {
+    background: #2563eb;
+}
+
+/* Edit Button */
+.edit-btn {
+    background: #facc15;
+    color: #000000;
+}
+
+.edit-btn:hover {
+    background: #eab308;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+/* Create Button */
+.create-btn {
+    background: #22c55e;
+    color: #ffffff;
+}
+
+.create-btn:hover {
+    background: #16a34a;
+}
+
+/* ============================= */
+/* Empty State */
+/* ============================= */
+
+.empty-box {
+    text-align: center;
+    padding: 40px;
+    background: #0f172a;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+}
+
+.empty-box p {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #cbd5e1;
+}

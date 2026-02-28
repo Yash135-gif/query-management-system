@@ -1,0 +1,248 @@
+/* ============================= */
+/* Chat Wrapper */
+/* ============================= */
+
+.chat-wrapper {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #0f172a;   /* Deep blue dark */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    overflow: hidden;
+    border: 1px solid #1e293b;
+}
+
+/* ============================= */
+/* Header */
+/* ============================= */
+
+.chat-header {
+    padding: 18px 25px;
+    background: #111c2e;
+    border-bottom: 1px solid #1e293b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Status Badge */
+/* ============================= */
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.pending {
+    background: #1e293b;
+    color: #facc15;
+}
+
+.status-badge.in_progress {
+    background: #1e3a5f;
+    color: #38bdf8;
+}
+
+.status-badge.answered {
+    background: #0f2e2e;
+    color: #22c55e;
+}
+
+.status-badge.closed {
+    background: #2e1a1a;
+    color: #ef4444;
+}
+
+/* ============================= */
+/* Chat Box */
+/* ============================= */
+
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #0b1220;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ============================= */
+/* Message Bubbles */
+/* ============================= */
+
+.chat-message {
+    max-width: 70%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ffffff;
+}
+
+/* User (Right side) */
+.chat-message.user {
+    align-self: flex-end;
+    background: #1d4ed8;   /* Strong blue */
+}
+
+/* Employee (Left side) */
+.chat-message.employee {
+    align-self: flex-start;
+    background: #1e293b;
+}
+
+/* Admin */
+.chat-message.admin {
+    align-self: flex-start;
+    background: #134e4a;
+}
+
+/* ============================= */
+/* Message Header */
+/* ============================= */
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #cbd5e1;
+}
+
+.message-text {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* ============================= */
+/* Attachment */
+/* ============================= */
+
+.attachment-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.attachment-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Edit Button */
+/* ============================= */
+
+.edit-btn {
+    font-size: 12px;
+    color: #facc15;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Chat Form */
+/* ============================= */
+
+.chat-form {
+    background: #111c2e;
+    border-top: 1px solid #1e293b;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-form textarea {
+    resize: none;
+    height: 80px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.chat-form textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-bottom input[type="file"] {
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.form-bottom button {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.form-bottom button:hover {
+    background: #2563eb;
+}
+
+/* ============================= */
+/* Closed Box */
+/* ============================= */
+
+.closed-box {
+    padding: 15px;
+    text-align: center;
+    background: #1e293b;
+    color: #ef4444;
+    font-weight: 600;
+}
+/* Top Bar Container */
+.page-top-bar {
+    margin-bottom: 20px;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #e3f2fd;           /* light blue */
+    color: #0d47a1;                /* dark blue text */
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid #bbdefb;
+}
+
+/* Hover Effect */
+.back-btn:hover {
+    background: #2196f3;           /* solid blue */
+    color: #ffffff;
+    border-color: #2196f3;
+    transform: translateX(-3px);
+}

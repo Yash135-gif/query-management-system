@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Raise Query to Admin{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/employee_add_query_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="raise-query-page">
+
+    <!-- Back Button -->
+    <div class="page-top-bar">
+        <a href="{% url 'employee_dashboard' %}" class="back-btn">← Back</a>
+    </div>
+
+    <div class="raise-query-container">
+        <h2>Raise Query to Admin</h2>
+
+        <form method="POST" enctype="multipart/form-data" class="raise-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Your Question</label>
+                <textarea name="question" required placeholder="Describe your issue clearly..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Attach Screenshot (Optional)</label>
+                <input type="file" name="attachment">
+            </div>
+
+            <button type="submit" class="btn-submit">Submit to Admin</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

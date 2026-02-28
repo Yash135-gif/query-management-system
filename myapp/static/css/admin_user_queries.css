@@ -1,0 +1,196 @@
+/* ===============================
+   PAGE WRAPPER
+================================ */
+
+.admin-queries-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.dashboard-header {
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    margin-bottom: 6px;
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* ===============================
+   QUERY GRID
+================================ */
+
+.queries-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* ===============================
+   QUERY CARD
+================================ */
+
+.query-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s ease;
+}
+
+.query-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   HEADER SECTION
+================================ */
+
+.query-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.query-header h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* ===============================
+   STATUS BADGES
+================================ */
+
+.status-badge {
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.status-badge.pending_admin {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.status-badge.in_progress {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.status-badge.closed {
+    background: rgba(148, 163, 184, 0.2);
+    color: #94a3b8;
+}
+
+/* ===============================
+   META SECTION
+================================ */
+
+.query-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ===============================
+   PRIORITY BADGE
+================================ */
+
+.priority-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.priority-badge.low {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+.priority-badge.medium {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.priority-badge.high {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+/* ===============================
+   ACTIONS
+================================ */
+
+.card-actions {
+    margin-top: auto;
+}
+
+.open-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.open-btn:hover {
+    opacity: 0.9;
+}
+
+.closed-text {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+    .queries-container {
+        grid-template-columns: 1fr;
+    }
+}

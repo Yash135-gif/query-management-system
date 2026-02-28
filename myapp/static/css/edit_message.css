@@ -1,0 +1,176 @@
+/* ===============================
+   PAGE WRAPPER
+================================ */
+
+.edit-page-wrapper {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: var(--text-primary);
+}
+
+/* ===============================
+   TOP BAR
+================================ */
+
+.page-top-bar {
+    margin-bottom: 18px;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    opacity: 0.8;
+}
+
+/* ===============================
+   EDIT CARD
+================================ */
+
+.edit-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.edit-card h2 {
+    margin-bottom: 22px;
+    font-weight: 600;
+}
+
+/* ===============================
+   FORM GROUP
+================================ */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+/* ===============================
+   TEXTAREA
+================================ */
+
+.form-group textarea {
+    resize: none;
+    padding: 14px;
+    border-radius: 12px;
+    background: #020617;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+    transition: 0.2s ease;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* ===============================
+   CURRENT ATTACHMENT BOX
+================================ */
+
+.current-attachment {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: rgba(59,130,246,0.08);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.current-attachment p {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+.current-attachment a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.current-attachment a:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   FORM ACTIONS
+================================ */
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Primary Button */
+.btn-primary {
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    opacity: 0.85;
+}
+
+/* Cancel Button */
+.btn-cancel {
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.btn-cancel:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+    .edit-card {
+        padding: 22px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-primary,
+    .btn-cancel {
+        width: 100%;
+        text-align: center;
+    }
+}

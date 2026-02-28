@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Assign Department | Admin Panel{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/assign_department.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="assign-page">
+
+    <!-- Top Bar -->
+    <div class="page-top-bar">
+        <a href="{% url 'manage_users' %}" class="back-btn">← Back</a>
+    </div>
+
+    <div class="assign-card">
+
+        <div class="assign-header">
+            <h2>Assign Department</h2>
+            <p>Update employee department access</p>
+        </div>
+
+        <!-- Employee Info -->
+        <div class="employee-info">
+            <div class="info-row">
+                <span class="label">Employee</span>
+                <span>{{ user.name }}</span>
+            </div>
+
+            {% if user.department %}
+            <div class="info-row">
+                <span class="label">Current Department</span>
+                <span class="current-dept">
+                    {{ user.department.name }}
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Form -->
+        {% if departments %}
+        <form method="POST" class="assign-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="department">Select Department</label>
+                <select name="department" id="department" required>
+                    <option value="" disabled>Select a department</option>
+
+                    {% for dept in departments %}
+                        <option value="{{ dept.id }}"
+                            {% if user.department and user.department.id == dept.id %}
+                                selected
+                            {% endif %}>
+                            {{ dept.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Update Department
+            </button>
+
+        </form>
+        {% else %}
+            <div class="empty-state">
+                <p>No departments available. Please create a department first.</p>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock content %}

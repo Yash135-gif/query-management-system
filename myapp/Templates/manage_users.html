@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Manage Users{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/manage_users.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="manage-users-page">
+
+<div class="page-top-bar">
+        <a href="{% url 'admin_dashboard' %}" class="back-btn">← Back</a>
+    </div>
+
+
+    <div class="page-header">
+        <h2>Convert Users to Employees</h2>
+    </div>
+
+    <!-- Search -->
+    <form method="GET" class="search-form">
+        <input type="text"
+               name="search"
+               placeholder="Search by name or email..."
+               value="{{ search_value|default:'' }}">
+
+        <button type="submit" class="btn search-btn">Search</button>
+        <a href="{% url 'manage_users' %}" class="btn reset-btn">Reset</a>
+    </form>
+
+    <!-- Users List -->
+    <div class="users-grid">
+        {% for u in users %}
+        <div class="user-card">
+
+            <div class="user-details">
+                <h3>{{ u.name }}</h3>
+                <p>{{ u.email }}</p>
+            </div>
+
+            <div class="user-action">
+                {% if not u.employeeprofile %}
+                <a href="{% url 'make_employee' u.id %}" class="btn make-btn">
+                    Make Employee
+                </a>
+                {% else %}
+                <span class="status-badge success">Already Employee</span>
+                {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+        <p class="empty-msg">No users found.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

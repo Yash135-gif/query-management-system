@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}QuerySystem{% endblock title %}</title>
+
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <span class="logo-accent">Query</span>System
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+            {% if request.session.auth %}
+                {% if request.session.auth.role == 'admin' %}
+                    <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                {% elif request.session.auth.role == 'employee' %}
+                    <li><a href="{% url 'employee_dashboard' %}">Dashboard</a></li>
+                {% else %}
+                    <li><a href="{% url 'user_dashboard' %}">Dashboard</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}" class="btn-outline">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="btn-outline">Login</a></li>
+                <li><a href="{% url 'register' %}" class="btn-primary">Register</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main-container">
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer-content">
+        <p>© 2026 QuerySystem. Built with precision & professionalism.</p>
+    </div>
+</footer>
+
+</body>
+</html>

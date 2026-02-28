@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login | QuerySystem{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Login to access your dashboard.</p>
+        </div>
+
+        {% if message %}
+            <div class="alert-error">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        <form action="{% url 'login_data' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter your email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn-auth">Login</button>
+        </form>
+
+        <p class="switch-auth">
+            Don’t have an account?
+            <a href="{% url 'register' %}">Create one</a>
+        </p>
+
+    </div>
+</div>
+{% endblock content %}
