@@ -1,210 +1,344 @@
-Query Management System
+# Query Management System
 
-A full-featured role-based ticket conversation system built using Django, MySQL, HTML and CSS.
+A role-based ticket conversation system built with Django, MySQL, HTML, and CSS.
 
-This system is not a simple single-question-answer platform.
-It is a multi-message conversation-based ticket management system where Users, Employees, and Admins interact in a structured workflow.
+Unlike simple question–answer platforms, this system supports multi-message conversations inside a single ticket, allowing structured communication between Users, Employees, and Admins.
 
-📌 Project Overview
+The system simulates a real-world customer support workflow where queries move through departments and can escalate to administrators when necessary.
 
-The Query Management System is designed to manage customer queries efficiently across departments with structured role-based dashboards.
+---
 
-The system includes:
+# Project Overview
 
-👤 User Dashboard
+The Query Management System is designed to handle customer queries efficiently using department-based routing and role-based dashboards.
 
-👨‍💼 Employee Dashboard
+The system consists of three main dashboards:
 
-🛠 Admin Dashboard
+- 👤 User Dashboard
+- 👨‍💼 Employee Dashboard
+- 🛠 Admin Dashboard
 
-Each role has its own permissions, features, and workflow logic.
+Each role has its own permissions, workflow, and features.
 
-🧑‍💻 Tech Stack
+---
 
-Backend: Python, Django
+# Tech Stack
 
-Database: MySQL
+## Backend
+- Python
+- Django
 
-Frontend: HTML, CSS
+## Database
+- MySQL
 
-Authentication: Custom role-based login system
+## Frontend
+- HTML
+- CSS
 
-Architecture: Manual role handling (No Django default auth system used)
+## Authentication
+- Custom role-based authentication system
+- Manual role handling (Django default auth not used)
 
-🎯 Core Features
-🔐 Role-Based Dashboard System
+---
 
-The system uses a role field in the database:
+# Core Features
 
-user
+## Role-Based Dashboard System
 
-employee
+Each user has a role field in the database:
 
-admin
+- user
+- employee
+- admin
 
-After login, users are redirected to their respective dashboards based on their role.
+After login, users are automatically redirected to their respective dashboards.
 
-👤 User Features
+---
 
-Create new queries
+# User Features
 
-Select department while creating query
+Users can:
 
-Send query directly to Admin (optional)
+- Create new queries
+- Select a department while creating queries
+- Send queries directly to admin (optional)
+- View their submitted queries
+- Participate in conversation threads
+- Send unlimited messages inside a ticket
+- Continue conversation until the ticket is resolved or closed
 
-Participate in conversation until ticket is closed
+This allows a real support-ticket style communication system.
 
-View own queries
+---
 
-Unlimited messages within a single query
+# Employee Features
 
-Conversation-based interaction (Not single Q&A)
+Employees handle queries related to their assigned department.
 
-👨‍💼 Employee Features
+They can:
 
-View Unclaimed Queries (Department-specific)
+- View Unclaimed Queries
+- Claim a query
+- Reply to users
+- Forward queries to admin
+- View claimed queries
+- View forwarded queries
+- View resolved queries
+- Create queries for admin
+- Participate in multi-message conversations
 
-Claim a query
+## Claim Logic
 
-Once claimed → Hidden from other employees of same department
+Once an employee claims a query:
 
-View Claimed Queries
+- It becomes hidden from other employees
+- The claiming employee becomes the primary handler
 
-Reply to queries
+This prevents multiple employees from working on the same ticket.
 
-Forward query to Admin
+---
 
-View Forwarded Queries
+# Admin Features
 
-View Resolved Queries
+Admins have full system-level control.
 
-Create query for Admin
+Admins can:
 
-Multi-message conversation support
+- View all forwarded queries
+- Participate in conversation threads
+- Reply directly to user queries
+- Close tickets
+- View employee queries
+- View resolved queries
+- View forwarded queries
 
-🛠 Admin Features
+## Employee Management
 
-View all forwarded queries
+Admins can:
 
-Participate in conversation threads
+- View employee list
+- Promote users to employees
+- Manage system workflow
 
-Reply directly to user queries
+---
 
-Close tickets
-
-View employee queries
-
-View resolved queries
-
-View forwarded queries
-
-Manage Employees:
-
-View employee list
-
-Promote user to employee
-
-Complete system-level access
-
-🏢 Department-Based Routing System
+# Department-Based Routing System
 
 When a user creates a query:
 
-User selects a department.
+- The user selects a department
+- Only employees from that department can see the query
+- One employee can claim the ticket
+- The ticket disappears from the unclaimed list of other employees
 
-Query becomes visible only to employees of that department.
+This ensures efficient workload distribution across departments.
 
-If one employee claims it:
+---
 
-It disappears from other employees’ unclaimed list.
+# Conversation-Based Ticket System
 
-Ensures proper workload distribution.
+Unlike traditional systems that support only one question and one answer, this platform supports:
 
-💬 Conversation-Based Ticket System
+- Unlimited messages inside a ticket
+- Multiple participants
+- Continuous conversation
+- Support-style threaded communication
 
-Unlike traditional Q&A systems:
+Participants can include:
 
-Each query supports unlimited messages
+- User
+- Employee
+- Admin
 
-Multiple participants can join (User, Employee, Admin)
+The conversation continues until the ticket is resolved or closed.
 
-Conversation continues until ticket is closed
+---
 
-Works similar to a support thread
+# System Workflow
 
-🧠 System Workflow
-🔹 User → Employee
+## User → Employee
 
-User creates query → Department employees see it → One employee claims it → Conversation starts.
+- User creates query
+- Query appears in department employee dashboard
+- One employee claims it
+- Conversation begins
 
-🔹 Employee → Admin
+## Employee → Admin
 
-If employee cannot resolve → Forwards to admin → Admin joins conversation.
+- If employee cannot resolve the issue
+- The ticket is forwarded to admin
+- Admin joins the conversation thread
 
-🔹 User → Admin
+## User → Admin
 
-User can directly send query to admin.
+Users can also directly send queries to admin.
 
-🔑 Default Admin Credentials
-Email: admin@test.com
-Password: admin123
-🗄 Database Design Highlights
+---
 
-Custom User model with role field
+# New Features Added
 
-Department model
+The system has been further enhanced with additional features:
 
-Query model
+## Email Notifications
 
-Conversation/message model
+Users and employees receive email notifications for important ticket updates such as:
 
-Claim logic implementation
+- New query creation
+- Query replies
+- Query resolution
 
-Status-based query management (Pending, Forwarded, Resolved, etc.)
+---
 
-📂 Dashboards
+## File Attachments in Queries
 
-The project contains three separate dashboards:
+Users can now attach files while creating queries or replying.
 
-User Dashboard
+This helps in providing:
 
-Employee Dashboard
+- screenshots
+- documents
+- supporting evidence
 
-Admin Dashboard
+for better issue resolution.
 
-Each dashboard dynamically loads content using HTML, CSS and radio-button-based UI switching.
+---
 
-🔥 Unique Selling Points (USP)
+## Dashboard Analytics
 
-✔ Role-based redirection logic (Manually implemented)
-✔ Department filtering system
-✔ Claim-based query handling
-✔ Forward-to-admin mechanism
-✔ Multi-message ticket conversation
-✔ No simple CRUD project — Real workflow-based system
+Admin dashboard now includes analytics insights, such as:
 
-📈 Future Improvements
+- Total queries
+- Resolved queries
+- Department workload
+- Query distribution
 
-Email notifications
+This helps administrators monitor system performance and support activity.
 
-Real-time chat using WebSockets
+---
 
-File attachments in queries
+# Database Design Highlights
 
-Dashboard analytics
+The system uses structured models such as:
 
-JWT authentication
+- Custom User model with role field
+- Department model
+- Query model
+- Conversation / Message model
 
-REST API integration
+Additional logic includes:
 
-🏁 How to Run the Project
+- Claim-based query handling
+- Status-based ticket workflow
+
+Example statuses:
+
+- Pending
+- Claimed
+- Forwarded
+- Resolved
+- Closed
+
+---
+
+# Project Dashboards
+
+The project includes three separate dashboards:
+
+- User Dashboard
+- Employee Dashboard
+- Admin Dashboard
+
+Dashboard sections dynamically switch using HTML, CSS and radio-button based UI logic.
+
+---
+
+# Project Screenshots
+
+Add your project screenshots here.
+
+Example structure:
+
+
+screenshots/
+login.png
+user_dashboard.png
+employee_dashboard.png
+admin_dashboard.png
+query_conversation.png
+
+
+## Ticket Conversation
+
+![Login](screenshots/user_employee_conv.png)
+
+## User Dashboard
+
+![User Dashboard](screenshots/user_dashboard.png)
+
+## Employee Dashboard
+
+![Employee Dashboard](screenshots/employee_dashboard.png)
+
+## Admin Dashboard
+
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
+## One More Ticket Conversation
+
+![Conversation](screenshots/employee_admin_conv.png)
+
+---
+
+# Unique Selling Points (USP)
+
+✔ Role-based redirection system  
+✔ Department-based ticket routing  
+✔ Claim-based query management  
+✔ Forward-to-admin escalation mechanism  
+✔ Multi-message conversation tickets  
+✔ Real workflow-based system (not a simple CRUD project)
+
+---
+
+# Future Improvements
+
+Possible future enhancements include:
+
+- Real-time chat using WebSockets
+- REST API integration
+- JWT authentication
+- Mobile-friendly UI
+
+---
+
+# Default Admin Credentials
+
+## Email
+
+admin@test.com
+
+
+## Password
+
+admin123
+
+
+---
+
+# How to Run the Project
+
+## Clone the repository
+
+```bash
 git clone <your-repo-link>
+Go to project directory
 cd query-management-system
+Install dependencies
 pip install -r requirements.txt
 
-Configure MySQL database in settings.py.
+Configure MySQL database inside settings.py.
 
-Then:
-
+Run migrations
 python manage.py migrate
+Start the server
 python manage.py runserver
